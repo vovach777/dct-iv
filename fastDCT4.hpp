@@ -42,7 +42,7 @@ void fft(std::vector<std::complex<T>> x)  // Fourier transform
 // n : sequence length
 // x : input/output sequence
 {
-    auto n = std::distance(begin, end);
+    auto n = x.size();
     std::vector<std::complex<T>> y(n);
     fft0(n, 1, 0, x.data(), y.data());
     // for (auto & v : x)
