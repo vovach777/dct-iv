@@ -79,11 +79,11 @@ void dct4(std::vector<T>& audio_signal) {
     fft(audio_dct);
 
     auto scale = T(std::sqrt(2.0 / window_length) / 4.0);
-    for (int i = 1, j = 0; i < 2 * window_length && j < window_length; i += 2, j += 1) {
+    for (int i = 1, j = 0; i < 2 * window_length && j < window_length;
+         i += 2, j += 1) {
         audio_signal[j] = std::real(audio_dct[i]) * scale;
     }
-
 }
-}
+}  // namespace dct_iv_implementation
 
 using dct_iv_implementation::dct4;
