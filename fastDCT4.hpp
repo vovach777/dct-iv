@@ -38,7 +38,7 @@ void fft0(int n, int s, bool eo, complex_t* x, complex_t* y)
 }
 
 template <typename T>
-void fft(std::vector<std::complex<T>> x)  // Fourier transform
+void fft(std::vector<std::complex<T>>& x)  // Fourier transform
 // n : sequence length
 // x : input/output sequence
 {
