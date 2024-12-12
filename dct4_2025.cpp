@@ -6,7 +6,7 @@
 
 const double PI = 3.14159265358979323846;
 
-// Функция для MDCT
+// Naive DCT4
 void dct4(const float * __restrict__   input, float * __restrict__  output, int N) {
     int M = N;  // Выходной размер будет в два раза меньше
 
@@ -104,7 +104,7 @@ void fill_mat(float* S, int SZ){
 
 int main() {
 
-    float s[8 * 8]; // Результирующий массив
+    float s[8 * 8];
     float S[8 * 8];
     fill_mat(S,8);
     print_mat(S,8);
@@ -118,9 +118,6 @@ int main() {
 
     dct4_by_dct2(s,64);
     print_mat(s,8);
-    
-
-    
 
     return 0;
 }
