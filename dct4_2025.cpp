@@ -51,7 +51,7 @@ void dct4_by_dct2(float* inout, int N) {
 
     // (a) Pre-processing: r(n) = 2 * u(n) * cos(pi * (2 * n + 1) / (4 * N))
     for (int n = 0; n < N; ++n) {
-        inout[n] = 2.0f * inout[n] * std::cos(M_PI * (2 * n + 1) / (4 * N));
+        inout[n] *= 2.0f *  std::cos(M_PI * (2 * n + 1) / (4 * N));
     }
 
     // (b) Вычисление DCT-II (на месте)
@@ -61,18 +61,14 @@ void dct4_by_dct2(float* inout, int N) {
     inout[0] /= 2;
     
     // (c) Post-processing: Y4(k) = Y2(k) - Y4(k-1), Y4(-1) = Y4(0)
-    r[0] = inout[0];
+    float prev = inout[0];
+    inout[0] = prev * sqrt2_N;
     for (int k = 1; k < N; ++k) {
-        r[k] = inout[k] - r[k - 1];
-    }
-
-    // Копируем результат обратно
-    for (int k = 0; k < N; ++k) {
-        inout[k] = r[k] * sqrt2_N;
+        float current = inout[k];
+        inout[k] = (prev=(current - prev)) * sqrt2_N;
+        
     }    
 }
-
-
 
 template <typename T>
 void print_mat(T&& t) {
