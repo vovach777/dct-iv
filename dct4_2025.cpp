@@ -96,41 +96,6 @@ void print_mat(T&& t, int SZ) {
     fmt::print("\n");
 }
 
-
-// // Функция для MDCT
-// void mdct(const float * __restrict__   input, float * __restrict__  output, int N) {
-//     int M = N / 2;  // Выходной размер будет в два раза меньше
-
-//     // Преобразование
-//     for (int k = 0; k < M; ++k) {
-//         float sum = 0.0f;
-
-//         // Косинусное преобразование
-//         for (int n = 0; n < N; ++n) {
-//             sum += input[n] * cos(PI / N * (n + 0.5f) * (k + 0.5f));
-//         }
-
-//         output[k] = sum;
-//     }
-// }
-
-// // Функция для IMDCT
-// void imdct(const float * __restrict__   input, float * __restrict__  output, int N) {
-//     int M = N / 2;  // Входной размер будет в два раза меньше
-
-//     // Обратное преобразование
-//     for (int n = 0; n < N; ++n) {
-//         float sum = 0.0f;
-
-//         // Косинусное преобразование
-//         for (int k = 0; k < M; ++k) {
-//             sum += input[k] * cos(PI / N * (n + 0.5f) * (k + 0.5f));
-//         }
-
-//         output[n] = sum;
-//     }
-// }
-
 void fill_mat(float* S, int SZ){
     for (int y=0; y < SZ; ++y)
     for (int x=0; x < SZ; ++x)
