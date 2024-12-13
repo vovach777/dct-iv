@@ -57,16 +57,13 @@ void dct4_by_dct2(float* inout, int N) {
     // (b) Вычисление DCT-II (на месте)
         
     forwardTransform(inout, r.data(), N);
-
-    inout[0] /= 2;
     
     // (c) Post-processing: Y4(k) = Y2(k) - Y4(k-1), Y4(-1) = Y4(0)
-    float prev = inout[0];
+    float prev = inout[0] / 2;
     inout[0] = prev * sqrt2_N;
     for (int k = 1; k < N; ++k) {
-        float current = inout[k];
-        inout[k] = (prev=(current - prev)) * sqrt2_N;
-        
+        prev = inout[k] - prev;
+        inout[k] = prev * sqrt2_N;        
     }    
 }
 
