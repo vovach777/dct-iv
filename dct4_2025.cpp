@@ -89,11 +89,22 @@ void print_mat(T&& t, int SZ) {
     fmt::print("\n");
 }
 
-void fill_mat(float* S, int SZ){
-    for (int y=0; y < SZ; ++y)
-    for (int x=0; x < SZ; ++x)
-       S[y*SZ+x] = y*10+x;
+// void fill_mat(float* S, int SZ){
+//     for (int y=0; y < SZ; ++y)
+//     for (int x=0; x < SZ; ++x)
+//        S[y*SZ+x] = y*10+x;
+// }
+
+// Функция для вычисления синусоидального окна
+void fill_mat(float *S, int SZ) {
+    const int N = SZ*SZ / 2;
+    
+    for (int n = 0; n < 2 * N; ++n) {
+        S[n] = std::sin(M_PI / (2.0 * N) * (n + 0.5)) * 100;
+    }
+    
 }
+
 
 int main() {
 
